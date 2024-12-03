@@ -1,10 +1,13 @@
-import 'package:args/args.dart';
-
 import 'package:aoc2024_dart/day1.dart';
+import 'package:aoc2024_dart/day2.dart';
+import 'package:args/args.dart';
 
 final commands = <String, Function>{
   'day1Part1': day1Part1,
   'day1Part2': day1Part2,
+  'day2Part1': day2Part1,
+  'day2Part2': (String input, String tolerance) =>
+      day2Part2(input, int.parse(tolerance)),
 };
 
 const String version = '0.0.1';
@@ -16,12 +19,6 @@ ArgParser buildParser() {
       abbr: 'h',
       negatable: false,
       help: 'Print this usage information.',
-    )
-    ..addFlag(
-      'verbose',
-      abbr: 'v',
-      negatable: false,
-      help: 'Show additional command output.',
     )
     ..addFlag(
       'version',
@@ -45,7 +42,6 @@ void main(List<String> arguments) {
   final ArgParser argParser = buildParser();
   try {
     final ArgResults results = argParser.parse(arguments);
-    bool verbose = false;
 
     // Process the parsed arguments.
     if (results.wasParsed('help')) {
@@ -55,9 +51,6 @@ void main(List<String> arguments) {
     if (results.wasParsed('version')) {
       print('aoc2024_dart version: $version');
       return;
-    }
-    if (results.wasParsed('verbose')) {
-      verbose = true;
     }
 
     final command = commands[results.rest.firstOrNull];
