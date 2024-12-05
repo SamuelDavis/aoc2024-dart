@@ -1,6 +1,7 @@
 import 'package:aoc2024_dart/day1.dart';
 import 'package:aoc2024_dart/day2.dart';
 import 'package:aoc2024_dart/day3.dart';
+import 'package:aoc2024_dart/day4.dart';
 import 'package:args/args.dart';
 
 final commands = <String, Function>{
@@ -11,6 +12,7 @@ final commands = <String, Function>{
       day2Part2(input, int.parse(tolerance)),
   'day3Part1': day3Part1,
   'day3Part2': day3Part2,
+  'day4Part1': day4Part1,
 };
 
 const String version = '0.0.1';
